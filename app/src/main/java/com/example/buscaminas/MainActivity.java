@@ -3,6 +3,9 @@ package com.example.buscaminas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +14,10 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.concurrent.TimeUnit;
+
+import static android.graphics.Color.*;
 
 public class MainActivity extends AppCompatActivity {
     public int b;
@@ -62,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
             num[c] = ran;
         }
 
+        cont=0;
+        contador.setText(""+cont);
+
         for (b =0 ;b <20 ;b++){
             final int caramelo = b;//PASAR EL NUMERO(CANCION DE OZUNA)
            //PARA ABRIR EL EVENTO
+            espacios[b].setText("");
             espacios[b].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -74,9 +85,15 @@ public class MainActivity extends AppCompatActivity {
                         contador.setText(""+cont);
                         //MUESTRA LOS NUMEROS
                         espacios[caramelo].setText(""+num[caramelo]);
+                        num[caramelo]=0;
+                        espacios[caramelo].setEnabled(false);
                     }else{
                            //MUESTRA LA X Y EL MENSAJE DE PERDER
-                        espacios[caramelo].setText("X");
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         Toast.makeText(MainActivity.this, "Perdiste", Toast.LENGTH_LONG).show();
                         reiniciar();
                     }
