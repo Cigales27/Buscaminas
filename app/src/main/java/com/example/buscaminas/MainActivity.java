@@ -89,11 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         espacios[caramelo].setEnabled(false);
                     }else{
                            //MUESTRA LA X Y EL MENSAJE DE PERDER
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        espacios[caramelo].setText("X");
                         Toast.makeText(MainActivity.this, "Perdiste", Toast.LENGTH_LONG).show();
                         reiniciar();
                     }
